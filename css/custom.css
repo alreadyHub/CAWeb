@@ -1,11 +1,6 @@
 /* HIDE THE 'Enable Visual Builder' Button*/
 #wp-admin-bar-et-use-visual-builder{
-  /*display: none !important;*/
-}
-
-/* ID Anchors do not jump to the correct location when the sticky navigation is compacted */
-header.fixed.compact + #page-container{
-	padding-top: 136px;
+  display: none !important;
 }
 .mobile-controls{
 	cursor: auto;
