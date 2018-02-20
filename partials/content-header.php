@@ -1,6 +1,6 @@
 <?php
 global $post;
-
+$post_content = isset($post) ? (is_object($post) ? $post->post_content : $post['content']) : '';
 $ver = caweb_get_version( get_the_ID() );
 $fixed_header = ( 5 == $ver && get_option('ca_sticky_navigation') ? ' fixed': '');
 $color = get_option('ca_site_color_scheme', 'oceanside');
@@ -14,7 +14,7 @@ $header_background_img = (4 == $ver && "" !== get_option('header_ca_background')
                           get_option('header_ca_background') : $default_background_img );
 $header_style = (4 == $ver ? sprintf('style="background: #fff url(%1$s) no-repeat 100% 100%; background-size: cover;"', $header_background_img) : '' );
 
-$slideshow_banner = caweb_banner_content_filter( (is_object($post) ? $post->post_content : $post['content'] ) , $ver );
+$slideshow_banner = caweb_banner_content_filter( $post_content , $ver );
 
 ?>
 
@@ -30,20 +30,22 @@ $slideshow_banner = caweb_banner_content_filter( (is_object($post) ? $post->post
     	 	require_once (CAWebAbsPath ."/ssi/location-bar.html");
 
         
+        print '<!-- Settings Bar -->';
+      	// Settings Bar
+     	  require_once (CAWebAbsPath ."/ssi/settings-bar.html");
+        
       print '<!-- Utility Header -->';
       // Include Utility Header
-      get_template_part('partials/content', 'utility-header');
-                  
+      get_template_part('partials/content', 'utility-header');         
       
-      print '<!-- Settings Bar -->';
-    	// Settings Bar
-   	  require_once (CAWebAbsPath ."/ssi/settings-bar.html");
 
 		}
+    
+    print '<!-- Branding -->';
+    // Include Utility Header
+    get_template_part('partials/content', 'branding'); 
+    
          ?>
-
-         <!-- Include Branding -->        
-         <?php require_once (CAWebAbsPath ."/ssi/branding.html");?>
          
          <!-- Include Mobile Controls -->
          <?php require_once (CAWebAbsPath ."/ssi/mobile-controls.html");?>
@@ -52,7 +54,17 @@ $slideshow_banner = caweb_banner_content_filter( (is_object($post) ? $post->post
 
 <!-- Version 4 top-right search box always displayed -->
 <!-- Version 5.0 fade in/out search box displays on front page and if option is enabled -->
+<!-- Include Navigation -->
 <?php
+    wp_nav_menu( array('theme_location' => 'header-menu',
+                      'style' => ( get_option('ca_menu_selector_enabled') ?
+                                  get_post_meta(get_the_ID(), 'ca_default_navigation_menu',true) :
+                                  get_option('ca_default_navigation_menu') ),
+                      'home_link' => ( ! is_front_page() && get_option('ca_home_nav_link', true) ? true : false),
+                      'version' => caweb_get_version( get_the_ID() ),
+                      )
+              );
+
 $search = ( caweb_version_check(5, get_the_ID()) && is_front_page() &&  get_option('ca_frontpage_search_enabled') ? 'featured-search fade': '');
 
 printf('<div id="head-search" class="search-container %1$s %2$s hidden-print">%3$s</div>',
@@ -61,19 +73,6 @@ printf('<div id="head-search" class="search-container %1$s %2$s hidden-print">%3
 								sprintf('<gcse:searchbox-only resultsUrl="%1$s" enableAutoComplete="true"></gcse:searchbox-only> ', site_url('serp') ) : '') );
 
 ?>
-
-          <!-- Include Navigation -->
-					<?php
-							wp_nav_menu( array('theme_location' => 'header-menu',
-																'style' => ( get_option('ca_menu_selector_enabled') ?
-																						get_post_meta(get_the_ID(), 'ca_default_navigation_menu',true) :
-																						get_option('ca_default_navigation_menu') ),
-																'home_link' => ( ! is_front_page() && get_option('ca_home_nav_link', true) ? true : false),
-																'version' => caweb_get_version( get_the_ID() ),
-																)
-												);
-
-					?>
 
         </div>
 
