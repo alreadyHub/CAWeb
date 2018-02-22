@@ -30,28 +30,22 @@ body{
 .utility-header .container{
      max-width: 1280px;
 } 
-.utility-header .half{
- padding-left: 15px !important;
+.utility-header .container .group{
+     display: flex;
 }
-ul.utility-links.social-media-links{
- max-height: unset !important;
-}
+.utility-header .container .group .social-links,
+.utility-header .container .group .settings-links{
+     flex-grow: 10;
+     padding-left: 15px;
+} 
 .utility-header ul li {
     cursor: pointer;
 }
-.utility-header ul li {
-    padding: 3px 8px;
-}
-.utility-geo-locator .ca-gov-icon-compass{
- margin-right: 5px;
+ul.utility-links.social-media-links{
+ margin-left: 45px;
 }
 .utility-geo-locator .located-city-name{
   margin-left: 0;
-}
-@media (min-width: 768px){
-  .utility-links{
-    margin-right: -8px;
-  }
 }
 @media (max-width: 767px){ 
 .utility-header .container{
@@ -67,6 +61,9 @@ ul.utility-links.social-media-links{
 /* Google Translate */
 #google_translate_element{
   width: auto;
+  flex-grow: 1;
+  padding-left: 0;
+  text-align: right;
 }
 #google_translate_element .skiptranslate.goog-te-gadget div {
     color: initial;
