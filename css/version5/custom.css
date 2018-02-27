@@ -6,6 +6,10 @@ body{
 }
 #main-content .et_pb_row{
      max-width: 1280px;
+     margin-right: auto;
+     margin-left: auto;
+     padding-left: 15px;
+     padding-right: 15px;
 }
 @media (min-width: 768px){
 #main-content .et_pb_row {
@@ -22,6 +26,13 @@ body{
     width: 1280px;
 }
 }
+@media (max-width: 767px){
+  .et_pb_row{
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 /* Temporary remove the sub nav arrow until the function in the core script is working */
 .nav-arrow-down{
   	visibility: hidden;
@@ -37,6 +48,7 @@ body{
 .utility-header .container .group .settings-links{
      flex-grow: 10;
      padding-left: 15px;
+     width: auto;
 } 
 .utility-header ul li {
     cursor: pointer;
@@ -172,40 +184,31 @@ ul.utility-links.social-media-links{
 footer .container{
      max-width: 1280px;
 }
-footer .container.footer-menu{
-     padding: 0;
+footer .container .group{
+     display: flex;
 }
 .global-footer ul > li{
 	padding-left: 0;
 
 }
-#footer .socialsharer-container {
-    height: 22px;
+#footer .quarter {
+    flex-grow: 2;
+    width: auto;
 }
 
-/* End of Footer */
-
-/* Makes social media icons wrap below footer links */
-@media (min-width: 992px){
 #footer .three-quarters {
-	float: left;
-	min-width: 75%;
-	width: unset;
-  }
-}
-@media (min-width: 992px){
-  #footer .quarter {
-      float: left;
-      max-width: 25%;
-      width: unset;
-  }
+    flex-grow: 8;
+    width: auto;
 }
 
-@media (max-width: 992px){
-#footer .socialsharer-container {
-    float: left;
+@media (max-width: 767px){
+  footer .container{
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
-}
+/* End of Footer */
 
 @media (max-width: 991px) and (min-width: 768px){
 .sub-nav .three-quarters {
@@ -293,11 +296,4 @@ footer .container.footer-menu{
 /* Fullwidth Section Carousel Version 5 */
 .et_pb_ca_fullwidth_section_carousel .container{
   padding-top: 10px !important;
-}
-
-@media (max-width: 767px){
-  .et_pb_row{
-    width: 90% !important;
-
-  }
 }
