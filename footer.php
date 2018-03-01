@@ -18,14 +18,7 @@ window.et_pb_smooth_scroll=function(b,c,d,e){var a=$(window).width();$("header")
 <?php endif; ?>
 
 <?php if( is_tag() || is_archive() || is_category() || is_author() ) : ?>
-<<<<<<< HEAD
-<script>
-jQuery(document).ready(function(){var c=document.getElementsByTagName("main")[0].getElementsByTagName("article");var d=false;for(var b=0,a=c.length;b<a;b++){if(c[b].classList.contains("has-post-thumbnail")){d=true}}if(d){for(var b=0,a=c.length;b<a;b++){if(!c[b].classList.contains("has-post-thumbnail")){c[b].getElementsByTagName("a")[0].setAttribute("style","width:200px;height:150px;padding-right:20px;padding-bottom:15px;float:left;")}}}});
-</script>
-=======
   <script>
     jQuery(document).ready(function(){var c=document.getElementsByTagName("main")[0].getElementsByTagName("article");var d=false;for(var b=0,a=c.length;b<a;b++){if(c[b].classList.contains("has-post-thumbnail")){d=true}}if(d){for(var b=0,a=c.length;b<a;b++){if(!c[b].classList.contains("has-post-thumbnail")){c[b].getElementsByTagName("a")[0].setAttribute("style","width:200px;height:150px;padding-right:20px;padding-bottom:15px;float:left;")}}}});    	
   </script>
->>>>>>> 878c5248a8b40856aa9f8193a8e8059480786d57
-
 <?php endif; ?>
