@@ -10,14 +10,4 @@
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Tags:         light, dark, responsive-layout, accessibility-ready, california, ca
  Text Domain:  divi-state-child
-<<<<<<< HEAD
-*/#wpadminbar .ab-submenu{padding:6px 0!important}header{z-index:15!important}.divi_builder.title_not_displayed .entry-content>.et_pb_section:first-child .et_pb_row:first-child{padding:27px 0!important}
-=======
-*/
-#wpadminbar .ab-submenu {
-  padding: 6px 0 !important;
-}
-header {
-  z-index: 15 !important;
-}
->>>>>>> a0ad58844f2bc035f34dc1df39d2075470464328
+*/#wpadminbar .ab-submenu{padding:6px 0!important}header{z-index:15!important}
