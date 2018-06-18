@@ -1519,21 +1519,8 @@ class ET_Builder_Module_CAWeb_Post_Handler extends ET_Builder_CAWeb_Module {
         if (empty($module) || "general" !== $module->post_type_layout) {
             return;
         } ?>
-           <script>
-		   	var detail = document.getElementById('general_post_detail').parentNode;
-			if(1 == detail.childElementCount){
-				var row = detail.parentNode;
-				row.removeChild(detail);
-				if(0 == row.childElementCount){
-					if(1 == row.parentNode.childElementCount ){
-						row.parentNode.remove();
-					}else{
-						row.parentNode.removeChild(row);
-					}
-				}
-			}else{
-				detail.removeChild(document.getElementById('general_post_detail'));
-			}
+      <script>
+		   	var detail=document.getElementById("general_post_detail").parentNode;if(1==detail.childElementCount){var row=detail.parentNode;row.removeChild(detail);if(0==row.childElementCount){if(1==row.parentNode.childElementCount){row.parentNode.remove()}else{row.parentNode.removeChild(row)}}}else{detail.removeChild(document.getElementById("general_post_detail"))};
 			</script>
             <?php
     }

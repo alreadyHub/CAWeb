@@ -141,25 +141,7 @@ class ET_Builder_Module_Fullwidth_Header_Banner extends ET_Builder_CAWeb_Module 
 				<?php
         } else {
             ?>
-           <script>
-				var banner = document.getElementById('et_pb_ca_fullwidth_banner');
-				var column = banner.parentNode;
-
-					if(1 == column.childElementCount){
-						var row = column.parentNode;
-						row.removeChild(column);
-						if(0 == row.childElementCount){
-							if(1 == row.parentNode.childElementCount ){
-								row.parentNode.remove();
-							}else{
-								row.parentNode.removeChild(row);
-							}
-						}
-					}else{
-						detail.removeChild(banner);
-					}
-
-			</script>
+           <script>var banner=document.getElementById("et_pb_ca_fullwidth_banner");var column=banner.parentNode;if(1==column.childElementCount){var row=column.parentNode;row.removeChild(column);if(0==row.childElementCount){if(1==row.parentNode.childElementCount){row.parentNode.remove()}else{row.parentNode.removeChild(row)}}}else{detail.removeChild(banner)};</script>
             <?php
         }
     }

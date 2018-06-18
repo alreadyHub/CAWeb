@@ -213,16 +213,7 @@ function caweb_wp_enqueue_scripts() {
 add_action('wp_head', 'caweb_wp_head');
 function caweb_wp_head() {
     ?>
-	<script>
-	(function($) {	
-		$(window).bind("load", function() {
-			$('.fluid-width-video-wrapper').each(function() {
-				var src = $(this).find('iframe').attr('src');
-				$(this).find('iframe').attr('src', src + '&amp;rel=0');
-			});
-		});
-	})(jQuery)
-	</script>
+	<script>(function(a){a(window).bind("load",function(){a(".fluid-width-video-wrapper").each(function(){var b=a(this).find("iframe").attr("src");a(this).find("iframe").attr("src",b+"&amp;rel=0")})})})(jQuery);</script>
 
 <?php
 
