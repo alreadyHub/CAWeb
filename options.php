@@ -143,6 +143,26 @@ function caweb_save_options($values = array(), $files = array()) {
         }
     }
 
+    // Alert Banners
+    $alerts = array();
+
+    for ($i = 0; $i < $values['caweb_alert_count']; $i++) {
+        $count = $i + 1;
+        $data = array();
+
+        $data['header'] = $values['alert-header-'.$count];
+        $data['message'] = $values['alert-message-'.$count];
+        $data['page_display'] = $values['alert-display-'.$count];
+        $data['color'] = $values['alert-banner-color-'.$count];
+        $data['button'] = isset($values['alert-read-more-'.$count]) ? $values['alert-read-more-'.$count] : '';
+        $data['url'] = $values['alert-read-more-url-'.$count];
+        $data['target'] = isset($values['alert-read-more-target-'.$count]) ? $values['alert-read-more-target-'.$count] : '';
+        $data['icon'] = $values['alert-icon-'.$count];
+
+        $alerts[] = $data;
+    }
+    $values['caweb_alerts'] = $alerts;
+
     // Save CAWeb Options
     foreach ($values as $opt => $val) {
         if ("on" == $val) {
@@ -319,7 +339,7 @@ function caweb_get_site_options($group = '', $special = false, $with_values = fa
     $caweb_page_header_options = array('header_ca_branding', 'header_ca_branding_alignment', 'header_ca_background');
 
     $caweb_google_options = array('ca_google_search_id', 'ca_google_analytic_id',
-        'ca_google_meta_id', 'ca_google_trans_enabled');
+        'ca_google_meta_id', 'ca_google_trans_enabled', 'ca_google_trans_page', 'ca_google_trans_icon');
 
     $caweb_social_options = array('Facebook' => 'ca_social_facebook', 'Twitter' => 'ca_social_twitter',
         'Google Plus' =>  'ca_social_google_plus', 'Email' => 'ca_social_email',
@@ -340,6 +360,8 @@ function caweb_get_site_options($group = '', $special = false, $with_values = fa
     $caweb_misc_options = array('caweb_external_css', 'ca_custom_css');
 
     $caweb_special_options = array('caweb_username', 'caweb_password', 'caweb_multi_ga');
+
+    $caweb_alert_options = array('caweb_alerts');
 
     switch ($group) {
 		case 'general':
@@ -382,9 +404,12 @@ function caweb_get_site_options($group = '', $special = false, $with_values = fa
 			$output = $caweb_sanitized_options;
 
 			break;
+    case 'alerts':
+      $output = $caweb_alert_options;
+
 		default:
 			$output = array_merge($caweb_general_options, $caweb_utility_header_options, $caweb_page_header_options,
-							$caweb_google_options, $caweb_social_options, $caweb_social_extra_options, $caweb_misc_options);
+							$caweb_google_options, $caweb_social_options, $caweb_social_extra_options, $caweb_misc_options, $caweb_alert_options);
 
 			break;
 	}
