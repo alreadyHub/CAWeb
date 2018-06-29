@@ -54,6 +54,9 @@ function caweb_setup_theme() {
     // additional functions
     require_once("{$inc_dir}/functions.php");
 
+    // Shortcodes
+    require_once("{$inc_dir}/shortcodes.php");
+
     // customizer functions
     require_once("{$inc_dir}/customizer.php");
 
@@ -179,8 +182,7 @@ function caweb_wp_enqueue_scripts() {
     }
 
     // Register Scripts
-    wp_register_script('cagov-modernizr-script', CAWebUri.'/js/libs/modernizr-2.0.6.min.js', array('jquery'), $theme_version, false);
-    wp_register_script('cagov-modernizr-extra-script', CAWebUri.'/js/libs/modernizr-extra.min.js', array('jquery'), $theme_version, false);
+    wp_register_script('cagov-modernizr-script', CAWebUri.'/js/libs/modernizr-3.6.0.min.js', array('jquery'), $theme_version, false);
 
     wp_register_script('cagov-google-script', CAWebUri.'/js/libs/google.js', array(), $theme_version, true);
     wp_register_script('cagov-ga-autotracker-script', CAWebUri.'/js/libs/AutoTracker.js', array(), $theme_version, true);
@@ -191,13 +193,12 @@ function caweb_wp_enqueue_scripts() {
         'ca_frontpage_search_enabled' => get_option('ca_frontpage_search_enabled') && is_front_page(),
         'ca_google_search_id' => get_option('ca_google_search_id'),
         'caweb_multi_ga' => get_site_option('caweb_multi_ga'),
-        'ca_google_trans_enabled' => get_option('ca_google_trans_enabled')));
+        'ca_google_trans_enabled' => 'none' !== get_option('ca_google_trans_enabled') ? true : false));
     // Enqueue Scripts
     wp_enqueue_script('cagov-navigation-script');
     wp_enqueue_script('cagov-google-script');
     wp_enqueue_script('cagov-ga-autotracker-script');
     wp_enqueue_script('cagov-modernizr-script');
-    wp_enqueue_script('cagov-modernizr-extra-script');
 
     // Version 5 specific scripts
     if (5 >= $ver && ("on" == get_option('ca_geo_locator_enabled') || get_option('ca_geo_locator_enabled'))) {
@@ -258,7 +259,7 @@ function caweb_admin_enqueue_scripts($hook) {
         wp_enqueue_script('browse-caweb-library');
 
         wp_register_script('caweb-admin-scripts', CAWebUri.'/js/wplibs/caweb.admin.js', array('jquery'), $theme_version);
-        wp_localize_script('caweb-admin-scripts', 'args', array('defaultFavIcon' => caweb_default_favicon_url(), 'changeCheck' => $hook));
+        wp_localize_script('caweb-admin-scripts', 'args', array('defaultFavIcon' => caweb_default_favicon_url(), 'changeCheck' => $hook, 'caweb_icons' => caweb_get_icon_list(-1, '', true), 'caweb_colors' => caweb_template_colors()));
         wp_enqueue_script('caweb-admin-scripts');
 
         // Enqueue Styles
